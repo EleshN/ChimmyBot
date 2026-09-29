@@ -6,6 +6,13 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
+print("DISCORD_TOKEN exists:", os.getenv("DISCORD_TOKEN") is not None)
+print("VERIFIED_ROLE_ID:", os.getenv("VERIFIED_ROLE_ID"))
+print("VERIFY_CHANNEL_ID:", os.getenv("VERIFY_CHANNEL_ID"))
+print(
+    "VERIFICATION_LOG_CHANNEL_ID:",
+    os.getenv("VERIFICATION_LOG_CHANNEL_ID"),
+)
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 VERIFIED_ROLE_ID = int(os.getenv("VERIFIED_ROLE_ID"))
