@@ -169,47 +169,8 @@ class AlumniBot(commands.Bot):
     async def on_ready(self):
         print(f"Logged in as {self.user} (ID: {self.user.id})")
 
-    async def on_member_join(self, member: discord.Member):
-        print(f"Member joined: {member} ({member.id})")
-
-        channel = member.guild.get_channel(VERIFY_CHANNEL_ID)
-
-        if channel is None:
-            print(
-                f"Could not find verification channel "
-                f"(ID: {VERIFY_CHANNEL_ID})"
-            )
-            return
-
-        print(f"Found verification channel: {channel.name}")
-
-        if channel is None:
-            print(
-                f"Could not find verification channel "
-                f"(ID: {VERIFY_CHANNEL_ID})"
-            )
-            return
-
-        # Don't send a verification message if the user somehow
-        # already has the verified role.
-        role = member.guild.get_role(VERIFIED_ROLE_ID)
-
-        if role is not None and role in member.roles:
-            return
-
-        await channel.send(
-            f"Welcome, {member.mention}! 👋\n\n"
-            "Welcome to the alumni server! Before you can access "
-            "the rest of the server, please complete the verification "
-            "form below.",
-            view=VerificationView(),
-        )
-
-    async def on_socket_raw_receive(self, msg):
-        if '"GUILD_MEMBER_ADD"' in msg:
-            print("RAW GUILD_MEMBER_ADD RECEIVED!")
-
-
 bot = AlumniBot()
+
+
 
 bot.run(TOKEN)
